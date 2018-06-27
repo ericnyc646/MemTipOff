@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CreatequicksheetComponent } from './createquicksheet/createquicksheet.component';
+import { QuicksheetsioService } from '../datalayer/quicksheetsio.service';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [CreatequicksheetComponent]
+  providers: [QuicksheetsioService]
 })
 export class AuthorwebmodModule { }
