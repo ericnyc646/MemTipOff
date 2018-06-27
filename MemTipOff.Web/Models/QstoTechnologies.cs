@@ -9,7 +9,7 @@ namespace MemTipOff.Web.Models
         public int QuickSheetId { get; set; }
         public int TechnologyId { get; set; }
 
-        public QuickSheets IdNavigation { get; set; }
-        public Technologies Technology { get; set; }
+        //public QuickSheets IdNavigation { get; set; }
+        //public Technologies Technology { get; set; }
     }
 }

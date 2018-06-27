@@ -12,6 +12,6 @@ namespace MemTipOff.Web.Models
         public decimal? PricePaid { get; set; }
         public int? OrderNumber { get; set; }
 
-        public Users User { get; set; }
+        //public Users User { get; set; }
     }
 }

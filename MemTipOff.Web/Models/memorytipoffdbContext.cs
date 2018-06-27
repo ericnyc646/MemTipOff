@@ -43,17 +43,17 @@ namespace MemTipOff.Web.Models
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.QstoTechnologies)
-                    .HasForeignKey<QstoTechnologies>(d => d.Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_QStoTechnologies_QuickSheets");
+                //entity.HasOne(d => d.IdNavigation)
+                //    .WithOne(p => p.QstoTechnologies)
+                //    .HasForeignKey<QstoTechnologies>(d => d.Id)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_QStoTechnologies_QuickSheets");
 
-                entity.HasOne(d => d.Technology)
-                    .WithMany(p => p.QstoTechnologies)
-                    .HasForeignKey(d => d.TechnologyId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_QStoTechnologies_Technologies");
+                //entity.HasOne(d => d.Technology)
+                //    .WithMany(p => p.QstoTechnologies)
+                //    .HasForeignKey(d => d.TechnologyId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_QStoTechnologies_Technologies");
             });
 
             modelBuilder.Entity<QuickSheetRatings>(entity =>
@@ -64,17 +64,17 @@ namespace MemTipOff.Web.Models
 
                 entity.Property(e => e.RatingTitle).HasMaxLength(20);
 
-                entity.HasOne(d => d.QuickSheet)
-                    .WithMany(p => p.QuickSheetRatings)
-                    .HasForeignKey(d => d.QuickSheetId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_QuickSheetRatings_QuickSheets");
+                //entity.HasOne(d => d.QuickSheet)
+                //    .WithMany(p => p.QuickSheetRatings)
+                //    .HasForeignKey(d => d.QuickSheetId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_QuickSheetRatings_QuickSheets");
 
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.QuickSheetRatings)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_QuickSheetRatings_Users");
+                //entity.HasOne(d => d.User)
+                //    .WithMany(p => p.QuickSheetRatings)
+                //    .HasForeignKey(d => d.UserId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_QuickSheetRatings_Users");
             });
 
             modelBuilder.Entity<QuickSheets>(entity =>
@@ -103,17 +103,17 @@ namespace MemTipOff.Web.Models
 
                 entity.Property(e => e.ViewDateTime).HasColumnType("datetime");
 
-                entity.HasOne(d => d.QuickSheet)
-                    .WithMany(p => p.QuickSheetViews)
-                    .HasForeignKey(d => d.QuickSheetId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_QuickSheetViews_QuickSheets");
+                //entity.HasOne(d => d.QuickSheet)
+                //    .WithMany(p => p.QuickSheetViews)
+                //    .HasForeignKey(d => d.QuickSheetId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_QuickSheetViews_QuickSheets");
 
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.QuickSheetViews)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_QuickSheetViews_Users");
+                //entity.HasOne(d => d.User)
+                //    .WithMany(p => p.QuickSheetViews)
+                //    .HasForeignKey(d => d.UserId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_QuickSheetViews_Users");
             });
 
             modelBuilder.Entity<TechCategories>(entity =>
@@ -133,11 +133,11 @@ namespace MemTipOff.Web.Models
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.HasOne(d => d.Category)
-                    .WithMany(p => p.Technologies)
-                    .HasForeignKey(d => d.CategoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Technologies_TechCategories");
+                //entity.HasOne(d => d.Category)
+                //    .WithMany(p => p.Technologies)
+                //    .HasForeignKey(d => d.CategoryId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_Technologies_TechCategories");
             });
 
             modelBuilder.Entity<UserPurchaseHistory>(entity =>
@@ -146,11 +146,11 @@ namespace MemTipOff.Web.Models
 
                 entity.Property(e => e.SaleDate).HasColumnType("datetime");
 
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.UserPurchaseHistory)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UserPurchaseHistory_Users");
+                //entity.HasOne(d => d.User)
+                //    .WithMany(p => p.UserPurchaseHistory)
+                //    .HasForeignKey(d => d.UserId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_UserPurchaseHistory_Users");
             });
 
             modelBuilder.Entity<UserRoleDefinition>(entity =>
@@ -166,17 +166,17 @@ namespace MemTipOff.Web.Models
 
                 entity.Property(e => e.StartDate).HasColumnType("datetime");
 
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.UserRoles)
-                    .HasForeignKey(d => d.RoleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UserRoles_UserRoleDefinition");
+                //entity.HasOne(d => d.Role)
+                //    .WithMany(p => p.UserRoles)
+                //    .HasForeignKey(d => d.RoleId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_UserRoles_UserRoleDefinition");
 
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.UserRoles)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UserRoles_Users");
+                //entity.HasOne(d => d.User)
+                //    .WithMany(p => p.UserRoles)
+                //    .HasForeignKey(d => d.UserId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_UserRoles_Users");
             });
 
             modelBuilder.Entity<Users>(entity =>

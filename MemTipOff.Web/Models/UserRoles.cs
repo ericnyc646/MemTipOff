@@ -12,7 +12,7 @@ namespace MemTipOff.Web.Models
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
-        public UserRoleDefinition Role { get; set; }
-        public Users User { get; set; }
+        //public UserRoleDefinition Role { get; set; }
+        //public Users User { get; set; }
     }
 }
