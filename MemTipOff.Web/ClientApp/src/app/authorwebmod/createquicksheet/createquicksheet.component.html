@@ -1,3 +1,39 @@
-<p>
-  createquicksheet works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" style="padding-bottom: 25px">
+      <h2>Create Quicksheet</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" style="background-color:#D5D8DC;padding-bottom: 20px; padding-top: 10px">
+      <h4>Configure Quicksheet Element to Add</h4><br/>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-4" style="background-color:#FFF; padding-top: 10px; padding-bottom: 15px;">
+            Select Type:<br/>
+            <select id="elementselected" name="elementselected" onchange="sectionchanged()" style="width:100%">
+                <option value="topicdiv">Topic</option>
+                <option value="titlesectiondiv">Title</option>
+                <option value="notediv">Note</option>
+                <option value="codediv">Code Snippet</option>
+                <option value="footnotediv">Footnote</option>
+                <option value="linespacediv">Line Space</option>
+            </select><br/><br/>
+            <div id="addtotopicdiv" name="addtotopicdiv">
+                Add to Topic:<br/>
+                <select id="titleaddtotopic" name="titleaddtotopic" style="width: 100%"></select>
+            </div><br>
+            Text:<br/>
+            <textarea id="elementtext" name="elementtext" rows="6" style="width: 100%; font-family: 'Courier New', Courier, monospace" placeholder="Text goes here"></textarea>
+            <br/>
+            <button class="btn btn-default" style="margin-top: 5px; float: right;">Add</button>
+          </div>
+          <div class="col-md-2"></div>
+          <div class="col-md-4" style="background-color:#FFF">Preview</div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
