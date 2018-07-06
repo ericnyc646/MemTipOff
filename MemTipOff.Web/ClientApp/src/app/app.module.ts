@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { DatalayerComponent } from './datalayer/datalayer.component';
@@ -15,7 +16,8 @@ import { CreatequicksheetComponent } from './authorwebmod/createquicksheet/creat
   ],
   imports: [
     BrowserModule,
-    AuthorwebmodModule
+    AuthorwebmodModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,12 +9,17 @@ import { QuicksheetsioService } from '../../datalayer/quicksheetsio.service';
 })
 export class CreatequicksheetComponent implements OnInit {
   quicksheets: QuickSheetsModel[];
-
+  elementtextarea = ' ';
+  theelementselected = 'ch-topic';
 
   constructor(private quicksheetioservice: QuicksheetsioService) { }
 
   ngOnInit() {
     this.quicksheets = this.quicksheetioservice.getAllSheets();
+  }
+
+  onElementChange(value: string) {
+    //alert(value);
   }
 
 }

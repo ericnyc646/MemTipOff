@@ -12,28 +12,49 @@
           <div class="col-md-1"></div>
           <div class="col-md-4" style="background-color:#FFF; padding-top: 10px; padding-bottom: 15px;">
             Select Type:<br/>
-            <select id="elementselected" name="elementselected" onchange="sectionchanged()" style="width:100%">
-                <option value="topicdiv">Topic</option>
-                <option value="titlesectiondiv">Title</option>
-                <option value="notediv">Note</option>
-                <option value="codediv">Code Snippet</option>
-                <option value="footnotediv">Footnote</option>
-                <option value="linespacediv">Line Space</option>
+            <select id="elementselected" name="elementselected" (change)="onElementChange($event.target.value)" [(ngModel)]="theelementselected" style="width:100%">
+                <option value="ch-topic" selected="selected">Topic</option>
+                <option value="ch-title">Title</option>
+                <option value="ch-note">Note</option>
+                <option value="ch-code">Code Snippet</option>
+                <option value="ch-footnote">Footnote</option>
+                <option value="ch-linespace">Line Space</option>
             </select><br/><br/>
-            <div id="addtotopicdiv" name="addtotopicdiv">
+            <div *ngIf="theelementselected == 'ch-topic'" id="addtotopicdiv" name="addtotopicdiv">
                 Add to Topic:<br/>
-                <select id="titleaddtotopic" name="titleaddtotopic" style="width: 100%"></select>
-            </div><br>
-            Text:<br/>
-            <textarea id="elementtext" name="elementtext" rows="6" style="width: 100%; font-family: 'Courier New', Courier, monospace" placeholder="Text goes here"></textarea>
-            <br/>
+                <select id="titleaddtotopic" name="titleaddtotopic" style="width: 100%"></select><br/><br/>
+            </div>
+            <div *ngIf="theelementselected != 'ch-linespace'">
+              Text:
+              <br/>
+              <textarea id="elementtext" name="elementtext" [(ngModel)]="elementtextarea" rows="6" style="width: 100%; font-family: 'Courier New', Courier, monospace" placeholder="Text goes here"></textarea>
+              <br/>
+            </div>
             <button class="btn btn-default" style="margin-top: 5px; float: right;">Add</button>
           </div>
           <div class="col-md-2"></div>
-          <div class="col-md-4" style="background-color:#FFF">Preview</div>
+          <div class="col-md-4" style="background-color:#FFF">
+            Preview:<br/><br/>
+            <div *ngIf="theelementselected == 'ch-topic'" class="{{theelementselected}}" style="border-right: 0px !important;">
+              <p>
+                {{elementtextarea}}
+              </p>
+            </div>
+            <div *ngIf="theelementselected != 'ch-topic'" class="{{theelementselected}}" style="border-right: 0px !important;">
+              {{elementtextarea}}
+            </div>
+          </div>
           <div class="col-md-1"></div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="row"><div class="col-md-12">&nbsp;</div></div>
+  <div class="row" style="background-color:#D5D8DC;padding-bottom: 20px; padding-top: 10px">
+    <div class="col-md-1"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-1"></div>
   </div>
 </div>
