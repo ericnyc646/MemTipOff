@@ -20,7 +20,7 @@
                 <option value="ch-footnote">Footnote</option>
                 <option value="ch-linespace">Line Space</option>
             </select><br/><br/>
-            <div *ngIf="theelementselected == 'ch-topic'" id="addtotopicdiv" name="addtotopicdiv">
+            <div *ngIf="theelementselected != 'ch-topic'" id="addtotopicdiv" name="addtotopicdiv" [(ngModel)]="thetopicselected">
                 Add to Topic:<br/>
                 <select id="titleaddtotopic" name="titleaddtotopic" style="width: 100%"></select><br/><br/>
             </div>
@@ -30,7 +30,7 @@
               <textarea id="elementtext" name="elementtext" [(ngModel)]="elementtextarea" rows="6" style="width: 100%; font-family: 'Courier New', Courier, monospace" placeholder="Text goes here"></textarea>
               <br/>
             </div>
-            <button class="btn btn-default" style="margin-top: 5px; float: right;">Add</button>
+            <button class="btn btn-default" style="margin-top: 5px; float: right;" (click)="onAddClick()">Add</button>
           </div>
           <div class="col-md-2"></div>
           <div class="col-md-4" style="background-color:#FFF">
@@ -49,12 +49,47 @@
       </div>
     </div>
   </div>
-  <div class="row"><div class="col-md-12">&nbsp;</div></div>
-  <div class="row" style="background-color:#D5D8DC;padding-bottom: 20px; padding-top: 10px">
-    <div class="col-md-1"></div>
-    <div class="col-md-4"></div>
-    <div class="col-md-2"></div>
-    <div class="col-md-4"></div>
-    <div class="col-md-1"></div>
+  <div class="row">
+    <div class="col-md-12">
+        <br />
+    </div>
   </div>
+  <div class="row">
+    <div class="col-md-12" style="background-color:#D5D8DC; border: 2px solid #0a0f0f;">
+        <div class="row" style="background-color:#85929E; padding-top: 3px; padding-bottom: 3px; font-size: large; font-weight: bold; color:white;">
+            <div class="col-md-12">
+                Preview
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="background-color: #EBEDEF; padding-top:15px; padding-bottom:15px; margin-top: 15px; margin-bottom: 15px">
+                <div id="previewdiv" name="previewdiv" style="width: 100%; height: 400px; overflow-y:scroll; background-color:white; padding: 5px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <br />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12" style="background-color:#D5D8DC; border: 2px solid #0a0f0f;">
+        <div class="row" style="background-color:#85929E; padding-top: 3px; padding-bottom: 3px; font-size: large; font-weight: bold; color:white;">
+            <div class="col-md-12">
+                JSON
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="background-color: #EBEDEF; padding-top:15px; padding-bottom:15px; margin-top: 15px; margin-bottom: 15px">
+                <div style="width: 100%; height: 400px; overflow-y:scroll; background-color:white; padding: 5px;">
+                    <pre id="jsonpreview" name="jsonpreview"></pre>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
