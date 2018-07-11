@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { QuickSheetsModel } from '../../models/quicksheetsmodel.model';
 import { QuicksheetsioService } from '../../datalayer/quicksheetsio.service';
 
@@ -8,20 +10,27 @@ import { QuicksheetsioService } from '../../datalayer/quicksheetsio.service';
   styleUrls: ['./createquicksheet.component.css']
 })
 export class CreatequicksheetComponent implements OnInit {
-  quicksheets: QuickSheetsModel[];
+  //quicksheets: QuickSheetsModel[];
   elementtextarea = ' ';
   thetopicselected = '';
   theelementselected = 'ch-topic';
-
+  datafromcall = null;
   alltopics = [];
-  cheatsheetjson = {
-      topics: []
-  };
+  cheatsheetjson = '';
 
-  constructor(private quicksheetioservice: QuicksheetsioService) { }
+  
+
+  constructor(private quicksheetioservice: QuicksheetsioService, private http: HttpClient) {
+
+   }
 
   ngOnInit() {
-    this.quicksheets = this.quicksheetioservice.getAllSheets();
+    this.getSheet();
+  }
+
+  getSheet(): void {
+    //this.cheatsheetjson = this.quicksheetioservice.getAllSheets(); 
+    this.quicksheetioservice.getAllSheets().subscribe(data => this.cheatsheetjson = JSON.stringify(data));
   }
 
   onElementChange(value: string) {
@@ -40,6 +49,7 @@ export class CreatequicksheetComponent implements OnInit {
           break;
 
     }
+    
   }
 
   addTopic(title: string) {
