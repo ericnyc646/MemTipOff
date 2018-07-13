@@ -10,13 +10,13 @@ import { QuicksheetsioService } from '../../datalayer/quicksheetsio.service';
   styleUrls: ['./createquicksheet.component.css']
 })
 export class CreatequicksheetComponent implements OnInit {
-  //quicksheets: QuickSheetsModel[];
+  quicksheets: JSON;
   elementtextarea = ' ';
   thetopicselected = '';
   theelementselected = 'ch-topic';
   datafromcall = null;
   alltopics = [];
-  cheatsheetjson = '';
+  cheatsheetjson: string;
 
   
 
@@ -30,7 +30,9 @@ export class CreatequicksheetComponent implements OnInit {
 
   getSheet(): void {
     //this.cheatsheetjson = this.quicksheetioservice.getAllSheets(); 
-    this.quicksheetioservice.getAllSheets().subscribe(data => this.cheatsheetjson = JSON.stringify(data));
+    //this.quicksheetioservice.getAllSheets().subscribe(data => this.cheatsheetjson = JSON.parse((<QuickSheetsModel>data).json));
+    this.quicksheetioservice.getAllSheets().subscribe(data => this.formatJSON((<QuickSheetsModel>data).json));
+    console.log("hello hello");
   }
 
   onElementChange(value: string) {
@@ -50,6 +52,12 @@ export class CreatequicksheetComponent implements OnInit {
 
     }
     
+  }
+
+  formatJSON(thejson: string) {
+    this.cheatsheetjson = thejson;
+    this.quicksheets = JSON.parse(thejson);
+    console.log(this.quicksheets);
   }
 
   addTopic(title: string) {

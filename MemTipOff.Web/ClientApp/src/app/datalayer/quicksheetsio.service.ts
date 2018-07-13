@@ -8,13 +8,13 @@ import { Observable, of } from 'rxjs';
 
 export class QuicksheetsioService {
 
-  qsheets: QuickSheetsModel[];
+  //qsheets: QuickSheetsModel[];
 
 
   constructor(private http: HttpClient) { }
 
-  getAllSheets(): Observable<QuickSheetsModel[]> {
-    return this.http.get<QuickSheetsModel[]>('/api/QuickSheets/1001');
+  getAllSheets(): Observable<QuickSheetsModel> {
+    return this.http.get<QuickSheetsModel>('/api/QuickSheets/1001');
   }
 
 }
