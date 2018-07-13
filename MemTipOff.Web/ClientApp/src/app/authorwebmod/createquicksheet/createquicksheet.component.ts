@@ -53,25 +53,25 @@ export class CreatequicksheetComponent implements OnInit {
   }
 
   addTopic(title: string) {
-    var index = this.alltopics.length + 1;
-    this.alltopics.push(title + '|topicdiv' + index);
-    this.cheatsheetjson.topics.push({ "name": "topicdiv" + index, "displayorder" : 0, "text" : title, elements: [] });
-    this.reloadtopicsdropdown();
-    this.updatejson();
+    // var index = this.alltopics.length + 1;
+    // this.alltopics.push(title + '|topicdiv' + index);
+    // this.cheatsheetjson.topics.push({ "name": "topicdiv" + index, "displayorder" : 0, "text" : title, elements: [] });
+    // this.reloadtopicsdropdown();
+    // this.updatejson();
   }
 
   addElement(title: string, topic: string) {
-    for (var item in this.cheatsheetjson.topics) {
-      if (this.cheatsheetjson.topics[item]['name'] == topic) {
-          var displayorder = this.cheatsheetjson.topics[item]['elements'].length + 1;
-          var name = topic + "_element" + displayorder;
-          var element = { "name": name, "text": title, "type": this.theelementselected, "displayorder": displayorder };
-          this.cheatsheetjson.topics[item]['elements'].push(element);
-          this.updatejson();
-          return;
-      }
+  //   for (var item in this.cheatsheetjson.topics) {
+  //     if (this.cheatsheetjson.topics[item]['name'] == topic) {
+  //         var displayorder = this.cheatsheetjson.topics[item]['elements'].length + 1;
+  //         var name = topic + "_element" + displayorder;
+  //         var element = { "name": name, "text": title, "type": this.theelementselected, "displayorder": displayorder };
+  //         this.cheatsheetjson.topics[item]['elements'].push(element);
+  //         this.updatejson();
+  //         return;
+  //     }
 
-  }
+  // }
   }
 
   reloadtopicsdropdown() {}
