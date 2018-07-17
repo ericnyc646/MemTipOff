@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 // General
 import { DatalayerComponent } from './datalayer/datalayer.component';
 import { QuicksheetsioService } from './datalayer/quicksheetsio.service';
@@ -34,6 +37,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     PublicwebmodModule,
+    NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
