@@ -16,12 +16,15 @@ import { HomepageComponent } from './publicwebmod/homepage/homepage.component';
 // Author Module
 import { AuthorwebmodModule } from './authorwebmod/authorwebmod.module';
 import { CreatequicksheetComponent } from './authorwebmod/createquicksheet/createquicksheet.component';
-
+import { AuthordashboardComponent } from './authorwebmod/authordashboard/authordashboard.component';
+import { AuthormyquicksheetsComponent } from './authorwebmod/authormyquicksheets/authormyquicksheets.component';
+import { AuthorsettingsComponent } from './authorwebmod/authorsettings/authorsettings.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: HomepageComponent },
-  { path: 'createquicksheet', component: CreatequicksheetComponent }
+  { path: 'createquicksheet', component: CreatequicksheetComponent },
+  { path: 'authorsdashboard', component: AuthordashboardComponent }
 ];
 
 
@@ -29,7 +32,10 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     DatalayerComponent,
-    CreatequicksheetComponent
+    CreatequicksheetComponent,
+    AuthordashboardComponent,
+    AuthormyquicksheetsComponent,
+    AuthorsettingsComponent
   ],
   imports: [
     BrowserModule,
