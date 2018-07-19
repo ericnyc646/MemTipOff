@@ -20,9 +20,11 @@
                 <option value="ch-footnote">Footnote</option>
                 <option value="ch-linespace">Line Space</option>
             </select><br/><br/>
-            <div *ngIf="theelementselected != 'ch-topic'" id="addtotopicdiv" name="addtotopicdiv" [(ngModel)]="thetopicselected">
+            <div *ngIf="theelementselected != 'ch-topic'" id="addtotopicdiv" name="addtotopicdiv">
                 Add to Topic:<br/>
-                <select id="titleaddtotopic" name="titleaddtotopic" style="width: 100%"></select><br/><br/>
+                <select id="titleaddtotopic" name="titleaddtotopic" style="width: 100%">
+                    <option *ngFor="let topic of quicksheets.topics" [value]="topic.name" >{{topic.text}}</option>
+                </select><br/><br/>
             </div>
             <div *ngIf="theelementselected != 'ch-linespace'">
               Text:
@@ -126,7 +128,7 @@
             <div class="col-md-12" style="background-color: #EBEDEF; padding-top:15px; padding-bottom:15px; margin-top: 15px; margin-bottom: 15px">
                 <div style="width: 100%; height: 400px; overflow-y:scroll; background-color:white; padding: 5px;">
                     <pre id="jsonpreview" name="jsonpreview" >
-                        {{ cheatsheetjson }}
+                        {{ quicksheets | json }}
                     </pre>
                 </div>
             </div>

@@ -15,7 +15,7 @@ export class CreatequicksheetComponent implements OnInit {
   thetopicselected = '';
   theelementselected = 'ch-topic';
   datafromcall = null;
-  alltopics = [];
+  //alltopics = [];
   cheatsheetjson: string;
 
   
@@ -37,13 +37,11 @@ export class CreatequicksheetComponent implements OnInit {
   }
 
   onAddClick() {
-    this.elementtextarea = '';
-
     switch (this.theelementselected) {
-      case "topicdiv":
-          this.addTopic('');
+      case "ch-topic":
+          this.addTopic(this.elementtextarea);
           break;
-      case "titlesectiondiv":
+      default:
           this.addElement('', '');
           break;
 
@@ -58,11 +56,12 @@ export class CreatequicksheetComponent implements OnInit {
   }
 
   addTopic(title: string) {
-    // var index = this.alltopics.length + 1;
-    // this.alltopics.push(title + '|topicdiv' + index);
-    // this.cheatsheetjson.topics.push({ "name": "topicdiv" + index, "displayorder" : 0, "text" : title, elements: [] });
-    // this.reloadtopicsdropdown();
-    // this.updatejson();
+    var index = this.quicksheets.topics.length + 1;
+    //this.alltopics.push(title + '|topicdiv' + index);
+    this.quicksheets.topics.push({ "name": "topicdiv" + index, "displayorder" : 0, "text" : title, elements: [] });
+    this.cheatsheetjson = JSON.stringify(this.quicksheets);
+    this.reloadtopicsdropdown();
+    this.updatejson();
   }
 
   addElement(title: string, topic: string) {
