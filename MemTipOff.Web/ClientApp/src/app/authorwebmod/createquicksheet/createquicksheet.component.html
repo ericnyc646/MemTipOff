@@ -22,7 +22,7 @@
             </select><br/><br/>
             <div *ngIf="theelementselected != 'ch-topic'" id="addtotopicdiv" name="addtotopicdiv">
                 Add to Topic:<br/>
-                <select id="titleaddtotopic" name="titleaddtotopic" style="width: 100%">
+                <select id="titleaddtotopic" name="titleaddtotopic" [(ngModel)]="topictobindto" style="width: 100%">
                     <option *ngFor="let topic of quicksheets.topics" [value]="topic.name" >{{topic.text}}</option>
                 </select><br/><br/>
             </div>

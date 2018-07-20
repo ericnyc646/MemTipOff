@@ -13,6 +13,7 @@ export class CreatequicksheetComponent implements OnInit {
   quicksheets = JSON.parse('{ "topics": [] }');
   elementtextarea = ' ';
   thetopicselected = '';
+  topictobindto: string = '';
   theelementselected = 'ch-topic';
   datafromcall = null;
   //alltopics = [];
@@ -42,7 +43,7 @@ export class CreatequicksheetComponent implements OnInit {
           this.addTopic(this.elementtextarea);
           break;
       default:
-          this.addElement('', '');
+          this.addElement(this.elementtextarea, this.topictobindto);
           break;
 
     }
@@ -52,33 +53,24 @@ export class CreatequicksheetComponent implements OnInit {
   formatJSON(thejson: string) {
     this.cheatsheetjson = thejson;
     this.quicksheets = JSON.parse(thejson);
-    //console.log(this.quicksheets);
   }
 
   addTopic(title: string) {
     var index = this.quicksheets.topics.length + 1;
-    //this.alltopics.push(title + '|topicdiv' + index);
     this.quicksheets.topics.push({ "name": "topicdiv" + index, "displayorder" : 0, "text" : title, elements: [] });
-    this.cheatsheetjson = JSON.stringify(this.quicksheets);
-    this.reloadtopicsdropdown();
-    this.updatejson();
   }
 
   addElement(title: string, topic: string) {
-  //   for (var item in this.cheatsheetjson.topics) {
-  //     if (this.cheatsheetjson.topics[item]['name'] == topic) {
-  //         var displayorder = this.cheatsheetjson.topics[item]['elements'].length + 1;
-  //         var name = topic + "_element" + displayorder;
-  //         var element = { "name": name, "text": title, "type": this.theelementselected, "displayorder": displayorder };
-  //         this.cheatsheetjson.topics[item]['elements'].push(element);
-  //         this.updatejson();
-  //         return;
-  //     }
-
-  // }
+    for (var item in this.quicksheets.topics) {
+      if(this.quicksheets.topics[item]['name'] == topic) {
+        var displayorder = this.quicksheets.topics[item]['elements'].length + 1;
+        var name = topic + "_element" + displayorder;
+        var element = { "name": name, "text": title, "type": this.theelementselected, "displayorder": displayorder };
+        this.quicksheets.topics[item]['elements'].push(element);
+        return;
+      }
+    }
   }
 
-  reloadtopicsdropdown() {}
 
-  updatejson() {}
 }
