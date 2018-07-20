@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import { AppRoutingModule } from './app-routing.module';
+
 // General
 import { DatalayerComponent } from './datalayer/datalayer.component';
 import { QuicksheetsioService } from './datalayer/quicksheetsio.service';
@@ -35,23 +37,23 @@ import { UserdashboardComponent } from './userwebmod/userdashboard/userdashboard
 import { MyquicksheetsComponent } from './userwebmod/myquicksheets/myquicksheets.component';
 
 
-const appRoutes: Routes = [
-  { path: '', component: HomepageComponent },
-  { path: 'home', component: HomepageComponent },
-  { path: 'about', component: AboutpageComponent },
-  { path: 'faq', component: FaqComponent },
-  { path: 'register', component: RegisterpageComponent },
-  { path: 'signin', component: SigninpageComponent },
-  { path: 'authors', component: AuthordashboardComponent },
-  { path: 'authors/create', component: CreatequicksheetComponent },
-  { path: 'authors/dashboard', component: AuthordashboardComponent },
-  { path: 'authors/myquicksheets', component: AuthormyquicksheetsComponent },
-  { path: 'authors/settings', component: AuthorsettingsComponent },
-  { path: 'user', component: UserdashboardComponent },
-  { path: 'user/dashboard', component: UserdashboardComponent },
-  { path: 'user/myquicksheets', component: MyquicksheetsComponent }
-  // { path: '', component:   },
-];
+// const appRoutes: Routes = [
+//   { path: '', component: HomepageComponent },
+//   { path: 'home', component: HomepageComponent },
+//   { path: 'about', component: AboutpageComponent },
+//   { path: 'faq', component: FaqComponent },
+//   { path: 'register', component: RegisterpageComponent },
+//   { path: 'signin', component: SigninpageComponent },
+//   { path: 'authors', component: AuthordashboardComponent },
+//   { path: 'authors/create', component: CreatequicksheetComponent },
+//   { path: 'authors/dashboard', component: AuthordashboardComponent },
+//   { path: 'authors/myquicksheets', component: AuthormyquicksheetsComponent },
+//   { path: 'authors/settings', component: AuthorsettingsComponent },
+//   { path: 'user', component: UserdashboardComponent },
+//   { path: 'user/dashboard', component: UserdashboardComponent },
+//   { path: 'user/myquicksheets', component: MyquicksheetsComponent }
+//   // { path: '', component:   },
+// ];
 
 
 @NgModule({
@@ -78,7 +80,8 @@ const appRoutes: Routes = [
     PublicwebmodModule,
     UserwebmodModule,
     NgbModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
+    // RouterModule.forRoot(appRoutes)
   ],
   providers: [
     QuicksheetsioService
