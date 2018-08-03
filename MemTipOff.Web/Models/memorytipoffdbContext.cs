@@ -26,6 +26,8 @@ namespace MemTipOff.Web.Models
         public virtual DbSet<UserRoles> UserRoles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
+        public virtual DbSet<Customer> Customers { get; set; }
+
 //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //        {
 //            if (!optionsBuilder.IsConfigured)
