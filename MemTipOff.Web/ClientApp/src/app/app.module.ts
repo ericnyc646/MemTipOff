@@ -35,6 +35,7 @@ import { AuthorsettingsComponent } from './authorwebmod/authorsettings/authorset
 import { UserwebmodModule } from './userwebmod/userwebmod.module';
 import { UserdashboardComponent } from './userwebmod/userdashboard/userdashboard.component';
 import { MyquicksheetsComponent } from './userwebmod/myquicksheets/myquicksheets.component';
+import { BaseServiceComponent } from './datalayer/base-service/base-service.component';
 
 
 // const appRoutes: Routes = [
@@ -70,7 +71,8 @@ import { MyquicksheetsComponent } from './userwebmod/myquicksheets/myquicksheets
     RegisterpageComponent,
     SigninpageComponent,
     UserdashboardComponent,
-    MyquicksheetsComponent
+    MyquicksheetsComponent,
+    BaseServiceComponent
   ],
   imports: [
     BrowserModule,
