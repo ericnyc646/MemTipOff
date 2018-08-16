@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 // General
 import { DatalayerComponent } from './datalayer/datalayer.component';
 import { QuicksheetsioService } from './datalayer/quicksheetsio.service';
+import { UserauthserviceService } from './datalayer/userauthservice.service';
 
 // Public Module
 import { PublicwebmodModule } from './publicwebmod/publicwebmod.module';
@@ -35,8 +36,6 @@ import { AuthorsettingsComponent } from './authorwebmod/authorsettings/authorset
 import { UserwebmodModule } from './userwebmod/userwebmod.module';
 import { UserdashboardComponent } from './userwebmod/userdashboard/userdashboard.component';
 import { MyquicksheetsComponent } from './userwebmod/myquicksheets/myquicksheets.component';
-import { BaseServiceComponent } from './datalayer/base-service/base-service.component';
-
 
 // const appRoutes: Routes = [
 //   { path: '', component: HomepageComponent },
@@ -71,8 +70,7 @@ import { BaseServiceComponent } from './datalayer/base-service/base-service.comp
     RegisterpageComponent,
     SigninpageComponent,
     UserdashboardComponent,
-    MyquicksheetsComponent,
-    BaseServiceComponent
+    MyquicksheetsComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +84,8 @@ import { BaseServiceComponent } from './datalayer/base-service/base-service.comp
     // RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    QuicksheetsioService
+    QuicksheetsioService,
+    UserauthserviceService
   ],
   bootstrap: [AppComponent]
 })

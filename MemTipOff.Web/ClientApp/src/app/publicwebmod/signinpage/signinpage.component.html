@@ -1,3 +1,34 @@
-<p>
-  signinpage works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" style="padding-bottom: 25px">
+      <h2>Register</h2>
+    </div>
+  </div>
+  <div class="row">
+     <div class="col-md-12" style="background-color:#D5D8DC;padding-bottom: 20px; padding-top: 10px">
+
+        <form #f="ngForm" novalidate (ngSubmit)="login(f)">
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" type="text" required name="email" class="form-control" placeholder="Email" [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
+              <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" required name="password" placeholder="Password" ngModel>
+            </div>          
+  
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" [disabled]="f.invalid || isRequesting">Login</button>
+            </div>
+  
+            <div *ngIf="errors" class="alert alert-danger" role="alert">
+                <strong>Oops!</strong> {{errors}}
+              </div> 
+            
+          </form>
+
+      </div>
+    </div>
+  </div>      

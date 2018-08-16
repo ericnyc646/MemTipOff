@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { UserRegistration } from '../models/user.registration.interface';
 
-import { BaseService } from './base-service.service';
+import { BaseService } from './base.service';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
-
-import '../rxjs-operators.js';
+import { Observable, of, BehaviorSubject } from 'rxjs';
+import { mapChildrenIntoArray } from '../../../node_modules/@angular/router/src/url_tree';
 
 @Injectable()
 export class UserauthserviceService extends BaseService {
@@ -17,56 +14,53 @@ export class UserauthserviceService extends BaseService {
   baseUrl: string = '';
   
     // Observable navItem source
-    private _authNavStatusSource = new BehaviorSubject<boolean>(false);
+    authNavStatusSource = new BehaviorSubject<boolean>(false);
     // Observable navItem stream
-    authNavStatus$ = this._authNavStatusSource.asObservable();
+    authNavStatus$ = this.authNavStatusSource.asObservable();
   
     private loggedIn = false;
 
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
       super();
       this.loggedIn = !!localStorage.getItem('auth_token');
       // ?? not sure if this the best way to broadcast the status but seems to resolve issue on page refresh where auth status is lost in
       // header component resulting in authed user nav links disappearing despite the fact user is still logged in
-      this._authNavStatusSource.next(this.loggedIn);
+      this.authNavStatusSource.next(this.loggedIn);
     }
 
-    register(email: string, password: string, firstName: string, lastName: string,location: string): Observable<UserRegistration> {
+    register(email: string, password: string, firstName: string, lastName: string,location: string): Observable<string> {
   
       let body = JSON.stringify({ email, password, firstName, lastName,location });
-      let headers = new Headers({ 'Content-Type': 'application/json' });
-      let options = new RequestOptions({ headers: headers });
+      let httpHeaders = new HttpHeaders({
+        'Content-Type' : 'application/json',
+        'Cache-Control': 'no-cache'
+        });   
   
-      // return this.http.post(this.baseUrl + "/accounts", body, options)
-      //   .map(res => true)
-      //   .catch(this.handleError);
+      return this.http.post<string>("/api/Accounts", body,
+         {
+           headers:  httpHeaders
+         });
     
-      }  
+      }
 
       
-   login(userName, password) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+   login(email, password) {
 
-    // return this.http
-    //   .post(
-    //   this.baseUrl + '/auth/login',
-    //   JSON.stringify({ userName, password }),{ headers }
-    //   )
-    //   .map(res => res.json())
-    //   .map(res => {
-    //     localStorage.setItem('auth_token', res.auth_token);
-    //     this.loggedIn = true;
-    //     this._authNavStatusSource.next(true);
-    //     return true;
-    //   })
-    //   .catch(this.handleError);
+    let body = JSON.stringify({ email, password});
+    let httpHeaders = new HttpHeaders({
+      'Content-Type' : 'application/json',
+      'Cache-Control': 'no-cache'
+      });  
+
+    return this.http.post<string>("/api/Auth/login", body, { headers:  httpHeaders });
   }
+
+
 
   logout() {
     localStorage.removeItem('auth_token');
     this.loggedIn = false;
-    this._authNavStatusSource.next(false);
+    this.authNavStatusSource.next(false);
   }
 
   isLoggedIn() {

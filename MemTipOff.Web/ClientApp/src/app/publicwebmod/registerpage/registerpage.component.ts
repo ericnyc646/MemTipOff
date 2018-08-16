@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 
 import { UserRegistration  } from '../../models/user.registration.interface';
 
+import { UserauthserviceService } from '../../datalayer/userauthservice.service';
+
+
 @Component({
   selector: 'app-registerpage',
   templateUrl: './registerpage.component.html',
@@ -13,8 +16,9 @@ export class RegisterpageComponent implements OnInit {
   errors: string;  
   isRequesting: boolean;
   submitted: boolean = false;
+  thedata: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userauthservice: UserauthserviceService) { }
 
   ngOnInit() {
   }
@@ -25,13 +29,9 @@ export class RegisterpageComponent implements OnInit {
     this.errors='';
     if(valid)
     {
-        // this.userService.register(value.email,value.password,value.firstName,value.lastName,value.location)
-        //           .finally(() => this.isRequesting = false)
-        //           .subscribe(
-        //             result  => {if(result){
-        //                 this.router.navigate(['/login'],{queryParams: {brandNew: true,email:value.email}});                         
-        //             }},
-        //             errors =>  this.errors = errors);
+      this.userauthservice.register(value.email, value.password, value.firstName, value.lastName,value.location)
+        .subscribe(data => this.thedata = data);
+
     }      
  } 
 
