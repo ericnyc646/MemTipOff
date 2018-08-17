@@ -13,6 +13,7 @@ import { UserauthserviceService } from '../../datalayer/userauthservice.service'
 export class NavigationComponent implements OnInit {
   status: boolean;
   subscription:Subscription;
+  name: string;
 
   constructor(private router: Router, private userauthservice: UserauthserviceService) { }
 
@@ -31,6 +32,6 @@ export class NavigationComponent implements OnInit {
   }
 
   processuserinfo(data) {
-    console.log(data);
+    this.name = 'Welcome ' + data.firstName;
   }
 }

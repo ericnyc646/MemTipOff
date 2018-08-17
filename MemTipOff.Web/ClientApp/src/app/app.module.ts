@@ -24,6 +24,7 @@ import { SigninpageComponent } from './publicwebmod/signinpage/signinpage.compon
 import { SiteheaderComponent } from './publicwebmod/siteheader/siteheader.component';
 import { SitefooterComponent } from './publicwebmod/sitefooter/sitefooter.component';
 import { NavigationComponent } from './publicwebmod/navigation/navigation.component';
+import { NavbarComponent } from './publicwebmod/navbar/navbar.component';
 
 // Author Module
 import { AuthorwebmodModule } from './authorwebmod/authorwebmod.module';
@@ -76,7 +77,8 @@ import { MyquicksheetsComponent } from './userwebmod/myquicksheets/myquicksheets
     MyquicksheetsComponent,
     SiteheaderComponent,
     SitefooterComponent,
-    NavigationComponent
+    NavigationComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -3,10 +3,28 @@
 
 <app-navigation></app-navigation>
 
-<div class="container">
+<div class="container-fluid" style="margin-top: 25px; margin-bottom: 25px">
   <div class="row">
-    <div class="col-md-12" style="margin-top: 25px; margin-bottom: 25px">
+    <div class="col-xl-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">Secondary Navigation goes here</div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6">
       <router-outlet></router-outlet>
+    </div>
+    <div class="col-xl-3">
+        <div class="container">
+            <div class="row">
+              <div class="col-md-1"></div>
+              <div class="col-md-10">Ads Go Here</div>
+              <div class="col-md-1"></div>
+            </div>
+          </div>
     </div>
   </div>
 </div>
