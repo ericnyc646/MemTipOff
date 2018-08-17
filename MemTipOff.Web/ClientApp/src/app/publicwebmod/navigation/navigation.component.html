@@ -30,14 +30,17 @@
         <a class="nav-link" href="#">About</a>
       </li>
 
-      <li *ngIf="isloggedin" class="nav-item" (click)="logout()">
+      <li *ngIf="status" class="nav-item" (click)="logout()">
         <a class="nav-link">Sign Out</a>
       </li>
 
-      <li *ngIf="!isloggedin" class="nav-item">
+      <li *ngIf="!status" class="nav-item">
         <a class="nav-link" routerLink="signin">Sign In</a>
       </li>
-      
+
+      <li class="nav-item"  (click)="getuserinfo()">
+        <a class="nav-link" >Get User Info</a>
+      </li>
     </ul>
   </div>  
 </nav>

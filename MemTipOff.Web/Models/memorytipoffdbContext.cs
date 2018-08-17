@@ -15,6 +15,11 @@ namespace MemTipOff.Web.Models
         {
         }
 
+        public virtual DbSet<Faqcategories> Faqcategories { get; set; }
+        public virtual DbSet<Faqs> Faqs { get; set; }
+        public virtual DbSet<OrderLineDetail> OrderLineDetail { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<Pricing> Pricing { get; set; }
         public virtual DbSet<QstoTechnologies> QstoTechnologies { get; set; }
         public virtual DbSet<QuickSheetRatings> QuickSheetRatings { get; set; }
         public virtual DbSet<QuickSheets> QuickSheets { get; set; }
@@ -22,40 +27,157 @@ namespace MemTipOff.Web.Models
         public virtual DbSet<TechCategories> TechCategories { get; set; }
         public virtual DbSet<Technologies> Technologies { get; set; }
         public virtual DbSet<UserPurchaseHistory> UserPurchaseHistory { get; set; }
-        public virtual DbSet<UserRoleDefinition> UserRoleDefinition { get; set; }
-        public virtual DbSet<UserRoles> UserRoles { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
 
-        public virtual DbSet<Customer> Customers { get; set; }
+        // Unable to generate entity type for table 'dbo.AspNetUserTokens'. Please see the warning messages.
+        // Unable to generate entity type for table 'dbo.AspNetUserRoles'. Please see the warning messages.
 
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//        {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer("Server=tcp:memorytipoffdbserver.database.windows.net,1433;Initial Catalog=memorytipoffdb;Persist Security Info=False;User ID=ecesteroowner;Password=7oQ*fgS2pnN5;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30");
-//            }
-//        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=tcp:memorytipoffdbserver.database.windows.net,1433;Initial Catalog=memorytipoffdb;Persist Security Info=False;User ID=ecesteroowner;Password=7oQ*fgS2pnN5;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Faqcategories>(entity =>
+            {
+                entity.ToTable("FAQCategories");
+
+                entity.Property(e => e.CategoryName)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DisplayCategory)
+                    .IsRequired()
+                    .HasDefaultValueSql("((1))");
+            });
+
+            modelBuilder.Entity<Faqs>(entity =>
+            {
+                entity.ToTable("FAQs");
+
+                entity.Property(e => e.Answer)
+                    .IsRequired()
+                    .HasColumnType("text");
+
+                entity.Property(e => e.DisplayItem)
+                    .IsRequired()
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Faqname)
+                    .IsRequired()
+                    .HasColumnName("FAQName")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Question)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.Faqs)
+                    .HasForeignKey(d => d.CategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_FAQs_FAQCategories");
+            });
+
+            modelBuilder.Entity<OrderLineDetail>(entity =>
+            {
+                entity.Property(e => e.Price).HasColumnType("decimal(18, 0)");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.OrderLineDetail)
+                    .HasForeignKey(d => d.OrderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_OrderLineDetail_Orders");
+            });
+
+            modelBuilder.Entity<Orders>(entity =>
+            {
+                entity.Property(e => e.ApprovalCode)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.BillingCity)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.BillingCountry)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.BillingMethod)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.BillingPhoneNumber)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.BillingPostalCode)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.BillingStateProvince)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.BillingStreetAddress1)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.BillingStreetAddress2)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.OrderDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Total).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.UserIpaddress)
+                    .IsRequired()
+                    .HasColumnName("UserIPAddress")
+                    .HasMaxLength(20);
+            });
+
+            modelBuilder.Entity<Pricing>(entity =>
+            {
+                entity.Property(e => e.PriceStartDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Qsid).HasColumnName("QSId");
+
+                entity.Property(e => e.SaleEndDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Qs)
+                    .WithMany(p => p.Pricing)
+                    .HasForeignKey(d => d.Qsid)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Pricing_QuickSheets");
+            });
+
             modelBuilder.Entity<QstoTechnologies>(entity =>
             {
                 entity.ToTable("QStoTechnologies");
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-                //entity.HasOne(d => d.IdNavigation)
-                //    .WithOne(p => p.QstoTechnologies)
-                //    .HasForeignKey<QstoTechnologies>(d => d.Id)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_QStoTechnologies_QuickSheets");
+                entity.HasOne(d => d.IdNavigation)
+                    .WithOne(p => p.QstoTechnologies)
+                    .HasForeignKey<QstoTechnologies>(d => d.Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_QStoTechnologies_QuickSheets");
 
-                //entity.HasOne(d => d.Technology)
-                //    .WithMany(p => p.QstoTechnologies)
-                //    .HasForeignKey(d => d.TechnologyId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_QStoTechnologies_Technologies");
+                entity.HasOne(d => d.Technology)
+                    .WithMany(p => p.QstoTechnologies)
+                    .HasForeignKey(d => d.TechnologyId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_QStoTechnologies_Technologies");
             });
 
             modelBuilder.Entity<QuickSheetRatings>(entity =>
@@ -66,17 +188,11 @@ namespace MemTipOff.Web.Models
 
                 entity.Property(e => e.RatingTitle).HasMaxLength(20);
 
-                //entity.HasOne(d => d.QuickSheet)
-                //    .WithMany(p => p.QuickSheetRatings)
-                //    .HasForeignKey(d => d.QuickSheetId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_QuickSheetRatings_QuickSheets");
-
-                //entity.HasOne(d => d.User)
-                //    .WithMany(p => p.QuickSheetRatings)
-                //    .HasForeignKey(d => d.UserId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_QuickSheetRatings_Users");
+                entity.HasOne(d => d.QuickSheet)
+                    .WithMany(p => p.QuickSheetRatings)
+                    .HasForeignKey(d => d.QuickSheetId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_QuickSheetRatings_QuickSheets");
             });
 
             modelBuilder.Entity<QuickSheets>(entity =>
@@ -85,7 +201,9 @@ namespace MemTipOff.Web.Models
                     .IsRequired()
                     .HasMaxLength(1000);
 
-                entity.Property(e => e.Author).HasMaxLength(100);
+                entity.Property(e => e.DateCreated).HasColumnType("datetime");
+
+                entity.Property(e => e.DateModified).HasColumnType("datetime");
 
                 entity.Property(e => e.Description).HasMaxLength(2000);
 
@@ -105,17 +223,11 @@ namespace MemTipOff.Web.Models
 
                 entity.Property(e => e.ViewDateTime).HasColumnType("datetime");
 
-                //entity.HasOne(d => d.QuickSheet)
-                //    .WithMany(p => p.QuickSheetViews)
-                //    .HasForeignKey(d => d.QuickSheetId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_QuickSheetViews_QuickSheets");
-
-                //entity.HasOne(d => d.User)
-                //    .WithMany(p => p.QuickSheetViews)
-                //    .HasForeignKey(d => d.UserId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_QuickSheetViews_Users");
+                entity.HasOne(d => d.QuickSheet)
+                    .WithMany(p => p.QuickSheetViews)
+                    .HasForeignKey(d => d.QuickSheetId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_QuickSheetViews_QuickSheets");
             });
 
             modelBuilder.Entity<TechCategories>(entity =>
@@ -135,11 +247,11 @@ namespace MemTipOff.Web.Models
                     .IsRequired()
                     .HasMaxLength(50);
 
-                //entity.HasOne(d => d.Category)
-                //    .WithMany(p => p.Technologies)
-                //    .HasForeignKey(d => d.CategoryId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_Technologies_TechCategories");
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.Technologies)
+                    .HasForeignKey(d => d.CategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Technologies_TechCategories");
             });
 
             modelBuilder.Entity<UserPurchaseHistory>(entity =>
@@ -148,61 +260,16 @@ namespace MemTipOff.Web.Models
 
                 entity.Property(e => e.SaleDate).HasColumnType("datetime");
 
-                //entity.HasOne(d => d.User)
-                //    .WithMany(p => p.UserPurchaseHistory)
-                //    .HasForeignKey(d => d.UserId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_UserPurchaseHistory_Users");
-            });
-
-            modelBuilder.Entity<UserRoleDefinition>(entity =>
-            {
-                entity.Property(e => e.RoleName)
+                entity.Property(e => e.UserId)
                     .IsRequired()
-                    .HasMaxLength(50);
-            });
+                    .HasMaxLength(450);
 
-            modelBuilder.Entity<UserRoles>(entity =>
-            {
-                entity.Property(e => e.EndDate).HasColumnType("datetime");
+                entity.HasOne(d => d.QuickSheet)
+                    .WithMany(p => p.UserPurchaseHistory)
+                    .HasForeignKey(d => d.QuickSheetId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserPurchaseHistory_QuickSheets");
 
-                entity.Property(e => e.StartDate).HasColumnType("datetime");
-
-                //entity.HasOne(d => d.Role)
-                //    .WithMany(p => p.UserRoles)
-                //    .HasForeignKey(d => d.RoleId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_UserRoles_UserRoleDefinition");
-
-                //entity.HasOne(d => d.User)
-                //    .WithMany(p => p.UserRoles)
-                //    .HasForeignKey(d => d.UserId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_UserRoles_Users");
-            });
-
-            modelBuilder.Entity<Users>(entity =>
-            {
-                entity.Property(e => e.EmailAddress)
-                    .IsRequired()
-                    .HasMaxLength(320)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.FirstName)
-                    .IsRequired()
-                    .HasMaxLength(255);
-
-                entity.Property(e => e.LastName)
-                    .IsRequired()
-                    .HasMaxLength(255);
-
-                entity.Property(e => e.Password)
-                    .IsRequired()
-                    .HasMaxLength(150);
-
-                entity.Property(e => e.Username)
-                    .IsRequired()
-                    .HasMaxLength(15);
             });
         }
     }

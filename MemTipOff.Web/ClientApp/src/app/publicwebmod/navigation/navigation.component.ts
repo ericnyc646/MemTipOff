@@ -11,7 +11,6 @@ import { UserauthserviceService } from '../../datalayer/userauthservice.service'
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  isloggedin: boolean;
   status: boolean;
   subscription:Subscription;
 
@@ -19,11 +18,19 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.userauthservice.authNavStatus$.subscribe(status => this.status = status);
-    this.isloggedin = this.userauthservice.isLoggedIn();
   }
 
   logout() {
     this.userauthservice.logout();
-    this.isloggedin = this.userauthservice.isLoggedIn();
+    
+  }
+
+  getuserinfo() {
+    this.userauthservice.getUserDetails()
+    .subscribe(data => { this.processuserinfo(data) });
+  }
+
+  processuserinfo(data) {
+    console.log(data);
   }
 }

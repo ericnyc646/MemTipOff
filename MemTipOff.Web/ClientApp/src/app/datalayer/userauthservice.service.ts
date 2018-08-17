@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { UserRegistration } from '../models/user.registration.interface';
 
+import { UserDetails } from '../models/userdetails.interface';
+
 import { BaseService } from './base.service';
 
 import { Observable, of, BehaviorSubject } from 'rxjs';
@@ -55,8 +57,6 @@ export class UserauthserviceService extends BaseService {
     return this.http.post<string>("/api/Auth/login", body, { headers:  httpHeaders });
   }
 
-
-
   logout() {
     localStorage.removeItem('auth_token');
     this.loggedIn = false;
@@ -66,6 +66,29 @@ export class UserauthserviceService extends BaseService {
   isLoggedIn() {
     return this.loggedIn;
   }
+
+  getUserDetails(): Observable<UserDetails> {
+    //let headers = new HttpHeaders();
+    let authToken = localStorage.getItem('auth_token');
+    //headers.append('Content-Type', 'application/json');
+    //headers.append('Authorization', 'Bearer ${authToken}');
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + authToken
+    })
+
+    let httpOptions = {
+      headers: headers
+    };
+
+    return this.http.get<UserDetails>('/api/User', httpOptions);
+
+
+    // return this.http.get(this.baseUrl + "/dashboard/home",{headers})
+    //   .map(response => response.json());
+    //   //.catch(this.handleError);
+  }  
 
   facebookLogin(accessToken:string) {
     let headers = new Headers();

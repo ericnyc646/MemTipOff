@@ -44,8 +44,12 @@ namespace MemTipOff.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<memorytipoffdbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EFCoreDBFirstDemoDatabase")));
-            services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EFCoreDBFirstDemoDatabase")));
+            services.AddDbContext<memorytipoffdbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("EFCoreDBFirstDemoDatabase")));
+            services.AddDbContext<AuthDbContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("EFCoreDBFirstDemoDatabase")));
+
+
 
             services.AddSingleton<IJwtFactory, JwtFactory>();
 
@@ -126,7 +130,6 @@ namespace MemTipOff.Web
             });
 
             services.AddAutoMapper();
-            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
         }
 
@@ -138,6 +141,7 @@ namespace MemTipOff.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -161,10 +165,17 @@ namespace MemTipOff.Web
                             });
                 });
 
-            //app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+
             app.UseAuthentication();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseMvc();
+
+
+
+
+            //app.UseStaticFiles();
+            //app.UseSpaStaticFiles();
 
             app.UseSwagger();
 

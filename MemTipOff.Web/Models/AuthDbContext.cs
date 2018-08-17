@@ -6,7 +6,7 @@ namespace MemTipOff.Web.Models
 {
     public class AuthDbContext : IdentityDbContext<AppUser>
     {
-        public AuthDbContext(DbContextOptions options)
+        public AuthDbContext(DbContextOptions<AuthDbContext> options)
             : base(options)
         {
         }

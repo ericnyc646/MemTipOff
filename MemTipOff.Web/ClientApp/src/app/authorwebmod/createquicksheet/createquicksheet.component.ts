@@ -4,6 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { QuickSheetsModel } from '../../models/quicksheetsmodel.model';
 import { QuicksheetsioService } from '../../datalayer/quicksheetsio.service';
 
+import { Router } from '@angular/router';
+import {Subscription} from 'rxjs';
+
+import { UserauthserviceService } from '../../datalayer/userauthservice.service';
+
 @Component({
   selector: 'app-createquicksheet',
   templateUrl: './createquicksheet.component.html',
@@ -18,14 +23,19 @@ export class CreatequicksheetComponent implements OnInit {
   datafromcall = null;
   //alltopics = [];
   cheatsheetjson: string;
-
+  status: boolean;
+  subscription:Subscription;
   
 
-  constructor(private quicksheetioservice: QuicksheetsioService, private http: HttpClient) {
+  constructor(private router: Router, 
+    private userauthservice: UserauthserviceService, 
+    private quicksheetioservice: QuicksheetsioService, 
+    private http: HttpClient) {
 
    }
 
   ngOnInit() {
+    this.subscription = this.userauthservice.authNavStatus$.subscribe(status => this.status = status);
     this.getSheet();
   }
 

@@ -11,7 +11,6 @@ namespace MemTipOff.Web.Models
         public string Topic { get; set; }
         public DateTime ViewDateTime { get; set; }
 
-        //public QuickSheets QuickSheet { get; set; }
-        //public Users User { get; set; }
+        public QuickSheets QuickSheet { get; set; }
     }
 }
