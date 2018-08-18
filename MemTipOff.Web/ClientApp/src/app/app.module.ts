@@ -25,6 +25,7 @@ import { SiteheaderComponent } from './publicwebmod/siteheader/siteheader.compon
 import { SitefooterComponent } from './publicwebmod/sitefooter/sitefooter.component';
 import { NavigationComponent } from './publicwebmod/navigation/navigation.component';
 import { NavbarComponent } from './publicwebmod/navbar/navbar.component';
+import { AdvertsidebarComponent } from './publicwebmod/advertsidebar/advertsidebar.component';
 
 // Author Module
 import { AuthorwebmodModule } from './authorwebmod/authorwebmod.module';
@@ -78,7 +79,8 @@ import { MyquicksheetsComponent } from './userwebmod/myquicksheets/myquicksheets
     SiteheaderComponent,
     SitefooterComponent,
     NavigationComponent,
-    NavbarComponent
+    NavbarComponent,
+    AdvertsidebarComponent
   ],
   imports: [
     BrowserModule,
