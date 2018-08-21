@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "categoryName": "General",
+    "displayOrder": 1,
+    "displayCategory": true,
+    "faqs": [
+      {
+        "id": 1,
+        "categoryId": 1,
+        "faqname": "About Us",
+        "question": "What is the purpose of using Speed Recall?",
+        "answer": "Makes finding information faster",
+        "displayOrder": 1,
+        "displayItem": true,
+        "category": null
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "categoryName": "Marketplace",
+    "displayOrder": 2,
+    "displayCategory": true,
+    "faqs": [
+      {
+        "id": 2,
+        "categoryId": 2,
+        "faqname": "Buy Once Use Everywhere",
+        "question": "Do I have to repurchase items to use other platforms.",
+        "answer": "No, once you own a quicksheet, it is yours across all platforms.",
+        "displayOrder": 1,
+        "displayItem": true,
+        "category": null
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "categoryName": "Mobile Applications",
+    "displayOrder": 3,
+    "displayCategory": true,
+    "faqs": []
+  },
+  {
+    "id": 4,
+    "categoryName": "Authoring",
+    "displayOrder": 4,
+    "displayCategory": true,
+    "faqs": []
+  },
+  {
+    "id": 5,
+    "categoryName": "Security Information",
+    "displayOrder": 5,
+    "displayCategory": true,
+    "faqs": []
+  }
+]4

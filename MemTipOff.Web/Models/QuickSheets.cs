@@ -8,6 +8,7 @@ namespace MemTipOff.Web.Models
         public QuickSheets()
         {
             Pricing = new HashSet<Pricing>();
+            QstoTechnologies = new HashSet<QstoTechnologies>();
             QuickSheetRatings = new HashSet<QuickSheetRatings>();
             QuickSheetViews = new HashSet<QuickSheetViews>();
             UserPurchaseHistory = new HashSet<UserPurchaseHistory>();
@@ -22,8 +23,8 @@ namespace MemTipOff.Web.Models
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
 
-        public QstoTechnologies QstoTechnologies { get; set; }
         public ICollection<Pricing> Pricing { get; set; }
+        public ICollection<QstoTechnologies> QstoTechnologies { get; set; }
         public ICollection<QuickSheetRatings> QuickSheetRatings { get; set; }
         public ICollection<QuickSheetViews> QuickSheetViews { get; set; }
         public ICollection<UserPurchaseHistory> UserPurchaseHistory { get; set; }

@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DatalayerComponent } from './datalayer/datalayer.component';
 import { QuicksheetsioService } from './datalayer/quicksheetsio.service';
 import { UserauthserviceService } from './datalayer/userauthservice.service';
+import { FaqService  } from './datalayer/faq.service';
 
 // Public Module
 import { PublicwebmodModule } from './publicwebmod/publicwebmod.module';
@@ -95,7 +96,8 @@ import { MyquicksheetsComponent } from './userwebmod/myquicksheets/myquicksheets
   ],
   providers: [
     QuicksheetsioService,
-    UserauthserviceService
+    UserauthserviceService,
+    FaqService
   ],
   bootstrap: [AppComponent]
 })

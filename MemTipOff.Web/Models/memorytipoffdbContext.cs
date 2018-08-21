@@ -15,6 +15,12 @@ namespace MemTipOff.Web.Models
         {
         }
 
+        public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Customers> Customers { get; set; }
         public virtual DbSet<Faqcategories> Faqcategories { get; set; }
         public virtual DbSet<Faqs> Faqs { get; set; }
         public virtual DbSet<OrderLineDetail> OrderLineDetail { get; set; }
@@ -42,49 +48,121 @@ namespace MemTipOff.Web.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            modelBuilder.Entity<Faqcategories>(entity =>
+            modelBuilder.Entity<AspNetRoleClaims>(entity =>
             {
-                entity.ToTable("FAQCategories");
+                entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryName)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false);
+                entity.Property(e => e.RoleId).HasMaxLength(450);
 
-                entity.Property(e => e.DisplayCategory)
-                    .IsRequired()
-                    .HasDefaultValueSql("((1))");
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.AspNetRoleClaims)
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
-            modelBuilder.Entity<Faqs>(entity =>
+            modelBuilder.Entity<AspNetRoles>(entity =>
             {
-                entity.ToTable("FAQs");
+                entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.Answer)
-                    .IsRequired()
-                    .HasColumnType("text");
+                entity.Property(e => e.Name).HasMaxLength(256);
 
-                entity.Property(e => e.DisplayItem)
-                    .IsRequired()
-                    .HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.Faqname)
-                    .IsRequired()
-                    .HasColumnName("FAQName")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Question)
-                    .IsRequired()
-                    .HasMaxLength(200);
-
-                entity.HasOne(d => d.Category)
-                    .WithMany(p => p.Faqs)
-                    .HasForeignKey(d => d.CategoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_FAQs_FAQCategories");
+                entity.Property(e => e.NormalizedName).HasMaxLength(256);
             });
+
+            modelBuilder.Entity<AspNetUserClaims>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.UserId).HasMaxLength(450);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.AspNetUserClaims)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<AspNetUserLogins>(entity =>
+            {
+                entity.HasKey(e => e.LoginProvider);
+
+                entity.Property(e => e.LoginProvider).ValueGeneratedNever();
+
+                entity.Property(e => e.ProviderKey).HasMaxLength(450);
+
+                entity.Property(e => e.UserId).HasMaxLength(450);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.AspNetUserLogins)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<AspNetUsers>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Email).HasMaxLength(256);
+
+                entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
+
+                entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
+
+                entity.Property(e => e.PictureUrl).HasColumnName("PictureURL");
+
+                entity.Property(e => e.UserName).HasMaxLength(256);
+            });
+
+            modelBuilder.Entity<Customers>(entity =>
+            {
+                entity.Property(e => e.IdentityId).HasMaxLength(450);
+
+                entity.HasOne(d => d.Identity)
+                    .WithMany(p => p.Customers)
+                    .HasForeignKey(d => d.IdentityId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            //modelBuilder.Entity<Faqcategories>(entity =>
+            //{
+            //    entity.ToTable("FAQCategories");
+
+            //    entity.Property(e => e.CategoryName)
+            //        .IsRequired()
+            //        .HasMaxLength(25);
+
+            //    entity.Property(e => e.DisplayCategory)
+            //        .IsRequired()
+            //        .HasDefaultValueSql("((1))");
+            //});
+
+            //modelBuilder.Entity<Faqs>(entity =>
+            //{
+            //    entity.ToTable("FAQs");
+
+            //    entity.Property(e => e.Answer)
+            //        .IsRequired()
+            //        .HasColumnType("text");
+
+            //    entity.Property(e => e.DisplayItem)
+            //        .IsRequired()
+            //        .HasDefaultValueSql("((1))");
+
+            //    entity.Property(e => e.Faqname)
+            //        .IsRequired()
+            //        .HasColumnName("FAQName")
+            //        .HasMaxLength(50)
+            //        .IsUnicode(false);
+
+            //    entity.Property(e => e.Question)
+            //        .IsRequired()
+            //        .HasMaxLength(200);
+
+            //    entity.HasOne(d => d.Category)
+            //        .WithMany(p => p.Faqs)
+            //        .HasForeignKey(d => d.CategoryId)
+            //        .OnDelete(DeleteBehavior.ClientSetNull)
+            //        .HasConstraintName("FK_FAQs_FAQCategories");
+            //});
 
             modelBuilder.Entity<OrderLineDetail>(entity =>
             {
@@ -138,7 +216,9 @@ namespace MemTipOff.Web.Models
 
                 entity.Property(e => e.OrderDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Total).HasColumnType("decimal(18, 0)");
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasMaxLength(450);
 
                 entity.Property(e => e.UserIpaddress)
                     .IsRequired()
@@ -165,13 +245,11 @@ namespace MemTipOff.Web.Models
             {
                 entity.ToTable("QStoTechnologies");
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.QstoTechnologies)
-                    .HasForeignKey<QstoTechnologies>(d => d.Id)
+                entity.HasOne(d => d.QuickSheet)
+                    .WithMany(p => p.QstoTechnologies)
+                    .HasForeignKey(d => d.QuickSheetId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_QStoTechnologies_QuickSheets");
+                    .HasConstraintName("FK_QStoTechnologies_QuickSheets1");
 
                 entity.HasOne(d => d.Technology)
                     .WithMany(p => p.QstoTechnologies)
@@ -270,6 +348,11 @@ namespace MemTipOff.Web.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_UserPurchaseHistory_QuickSheets");
 
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserPurchaseHistory)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserPurchaseHistory_AspNetUsers");
             });
         }
     }

@@ -13,6 +13,6 @@ namespace MemTipOff.Web.Models
         public int? OrderNumber { get; set; }
 
         public QuickSheets QuickSheet { get; set; }
-        
+        public AspNetUsers User { get; set; }
     }
 }
