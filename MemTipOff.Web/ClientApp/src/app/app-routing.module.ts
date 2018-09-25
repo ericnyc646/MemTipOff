@@ -12,6 +12,9 @@ import { AboutpageComponent } from './publicwebmod/aboutpage/aboutpage.component
 import { FaqComponent } from './publicwebmod/faq/faq.component';
 import { RegisterpageComponent } from './publicwebmod/registerpage/registerpage.component';
 import { SigninpageComponent } from './publicwebmod/signinpage/signinpage.component';
+import { PublicsidenavComponent } from './publicwebmod/publicsidenav/publicsidenav.component';
+import { AboutsidenavComponent } from './publicwebmod/aboutsidenav/aboutsidenav.component';
+import { BecomeauthorComponent } from './publicwebmod/becomeauthor/becomeauthor.component';
 
 // Author Module
 import { AuthorwebmodModule } from './authorwebmod/authorwebmod.module';
@@ -20,19 +23,31 @@ import { AuthordashboardComponent } from './authorwebmod/authordashboard/authord
 import { AuthormyquicksheetsComponent } from './authorwebmod/authormyquicksheets/authormyquicksheets.component';
 import { AuthorsettingsComponent } from './authorwebmod/authorsettings/authorsettings.component';
 
+// Marketplace Module
+import { MarketplaceModule } from './marketplace/marketplace.module';
+import { MarkethomeComponent } from './marketplace/markethome/markethome.component';
+import { MarketlistingsComponent } from './marketplace/marketlistings/marketlistings.component';
+import { MarketmenuComponent } from './marketplace/marketmenu/marketmenu.component';
+import { MarketproductdetailComponent } from './marketplace/marketproductdetail/marketproductdetail.component';
+
 // Admin Module
 
 
 // User Module
 import { UserwebmodModule } from './userwebmod/userwebmod.module';
 import { UserdashboardComponent } from './userwebmod/userdashboard/userdashboard.component';
-import { MyquicksheetsComponent } from './userwebmod/myquicksheets/myquicksheets.component';
+import { UsersettingsComponent } from './userwebmod/usersettings/usersettings.component';
+import { UsersidenavComponent } from './userwebmod/usersidenav/usersidenav.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomepageComponent },
+    { path: '', outlet: 'sidemenu', component: PublicsidenavComponent },
     { path: 'home', component: HomepageComponent },
-    { path: 'about', component: AboutpageComponent },
+    { path: 'home', outlet: 'sidemenu', component: PublicsidenavComponent },
+    { path: 'about', component: AboutpageComponent},
+    { path: 'about', outlet: 'sidemenu', component: AboutsidenavComponent},
     { path: 'faq', component: FaqComponent },
+    { path: 'authorinfo', component: BecomeauthorComponent },
     { path: 'register', component: RegisterpageComponent },
     { path: 'signin', component: SigninpageComponent },
     { path: 'authors', component: AuthordashboardComponent },
@@ -41,8 +56,10 @@ const appRoutes: Routes = [
     { path: 'authors/myquicksheets', component: AuthormyquicksheetsComponent },
     { path: 'authors/settings', component: AuthorsettingsComponent },
     { path: 'user', component: UserdashboardComponent },
+    { path: 'user', outlet: 'sidemenu', component: UsersidenavComponent},
     { path: 'user/dashboard', component: UserdashboardComponent },
-    { path: 'user/myquicksheets', component: MyquicksheetsComponent }
+    { path: 'user/settings', component: UsersettingsComponent },
+    { path: 'marketplace', component: MarkethomeComponent }
     // { path: '', component:   },
   ];
 

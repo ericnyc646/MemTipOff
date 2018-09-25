@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [
-    // UserdashboardComponent, MyquicksheetsComponent
-  ]
+  declarations: []
 })
-export class UserwebmodModule { }
+export class MarketplaceModule { }

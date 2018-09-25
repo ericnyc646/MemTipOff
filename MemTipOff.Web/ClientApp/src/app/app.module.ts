@@ -25,8 +25,10 @@ import { SigninpageComponent } from './publicwebmod/signinpage/signinpage.compon
 import { SiteheaderComponent } from './publicwebmod/siteheader/siteheader.component';
 import { SitefooterComponent } from './publicwebmod/sitefooter/sitefooter.component';
 import { NavigationComponent } from './publicwebmod/navigation/navigation.component';
-import { NavbarComponent } from './publicwebmod/navbar/navbar.component';
 import { AdvertsidebarComponent } from './publicwebmod/advertsidebar/advertsidebar.component';
+import { PublicsidenavComponent } from './publicwebmod/publicsidenav/publicsidenav.component';
+import { AboutsidenavComponent } from './publicwebmod/aboutsidenav/aboutsidenav.component';
+import { BecomeauthorComponent } from './publicwebmod/becomeauthor/becomeauthor.component';
 
 // Author Module
 import { AuthorwebmodModule } from './authorwebmod/authorwebmod.module';
@@ -35,31 +37,21 @@ import { AuthordashboardComponent } from './authorwebmod/authordashboard/authord
 import { AuthormyquicksheetsComponent } from './authorwebmod/authormyquicksheets/authormyquicksheets.component';
 import { AuthorsettingsComponent } from './authorwebmod/authorsettings/authorsettings.component';
 
+// Marketplace Module
+import { MarketplaceModule } from './marketplace/marketplace.module';
+import { MarkethomeComponent } from './marketplace/markethome/markethome.component';
+import { MarketlistingsComponent } from './marketplace/marketlistings/marketlistings.component';
+import { MarketmenuComponent } from './marketplace/marketmenu/marketmenu.component';
+import { MarketproductdetailComponent } from './marketplace/marketproductdetail/marketproductdetail.component';
+
 // Admin Module
 
 
 // User Module
 import { UserwebmodModule } from './userwebmod/userwebmod.module';
 import { UserdashboardComponent } from './userwebmod/userdashboard/userdashboard.component';
-import { MyquicksheetsComponent } from './userwebmod/myquicksheets/myquicksheets.component';
-
-// const appRoutes: Routes = [
-//   { path: '', component: HomepageComponent },
-//   { path: 'home', component: HomepageComponent },
-//   { path: 'about', component: AboutpageComponent },
-//   { path: 'faq', component: FaqComponent },
-//   { path: 'register', component: RegisterpageComponent },
-//   { path: 'signin', component: SigninpageComponent },
-//   { path: 'authors', component: AuthordashboardComponent },
-//   { path: 'authors/create', component: CreatequicksheetComponent },
-//   { path: 'authors/dashboard', component: AuthordashboardComponent },
-//   { path: 'authors/myquicksheets', component: AuthormyquicksheetsComponent },
-//   { path: 'authors/settings', component: AuthorsettingsComponent },
-//   { path: 'user', component: UserdashboardComponent },
-//   { path: 'user/dashboard', component: UserdashboardComponent },
-//   { path: 'user/myquicksheets', component: MyquicksheetsComponent }
-//   // { path: '', component:   },
-// ];
+import { UsersettingsComponent } from './userwebmod/usersettings/usersettings.component';
+import { UsersidenavComponent } from './userwebmod/usersidenav/usersidenav.component';
 
 
 @NgModule({
@@ -76,12 +68,19 @@ import { MyquicksheetsComponent } from './userwebmod/myquicksheets/myquicksheets
     RegisterpageComponent,
     SigninpageComponent,
     UserdashboardComponent,
-    MyquicksheetsComponent,
     SiteheaderComponent,
     SitefooterComponent,
     NavigationComponent,
-    NavbarComponent,
-    AdvertsidebarComponent
+    AdvertsidebarComponent,
+    MarkethomeComponent,
+    MarketlistingsComponent,
+    MarketmenuComponent,
+    MarketproductdetailComponent,
+    PublicsidenavComponent,
+    AboutsidenavComponent,
+    BecomeauthorComponent,
+    UsersettingsComponent,
+    UsersidenavComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +89,7 @@ import { MyquicksheetsComponent } from './userwebmod/myquicksheets/myquicksheets
     HttpClientModule,
     PublicwebmodModule,
     UserwebmodModule,
+    MarketplaceModule,
     NgbModule.forRoot(),
     AppRoutingModule
     // RouterModule.forRoot(appRoutes)

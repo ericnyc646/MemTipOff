@@ -10,8 +10,6 @@ import { QuicksheetsioService } from '../datalayer/quicksheetsio.service';
     CommonModule
   ],
   providers: [QuicksheetsioService],
-  declarations: [
-    // AuthordashboardComponent, AuthormyquicksheetsComponent, AuthorsettingsComponent
-  ]
+  declarations: [ ]
 })
 export class AuthorwebmodModule { }

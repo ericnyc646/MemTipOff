@@ -1,7 +1,7 @@
-
-<app-siteheader></app-siteheader>
-
 <app-navigation></app-navigation>
+
+<br/><br/>
+<!-- <app-siteheader></app-siteheader> -->
 
 <div class="container-fluid" style="margin-top: 25px; margin-bottom: 25px">
   <div class="row">
@@ -9,7 +9,9 @@
       <div class="container">
         <div class="row">
           <div class="col-md-1"></div>
-          <div class="col-md-10">Secondary Navigation goes here</div>
+          <div class="col-md-10" style="padding-top: 50px;">
+            <router-outlet name="sidemenu"></router-outlet>
+          </div>
           <div class="col-md-1"></div>
         </div>
       </div>
@@ -21,12 +23,12 @@
         <div class="container">
             <div class="row">
               <div class="col-md-1"></div>
-              <div class="col-md-10"><app-advertsidebar></app-advertsidebar></div>
+              <div class="col-md-10" style="padding-top: 50px;"><app-advertsidebar></app-advertsidebar></div>
               <div class="col-md-1"></div>
             </div>
           </div>
     </div>
   </div>
 </div>
-
+<br/><br/><br/><br/>
 <app-sitefooter></app-sitefooter>
