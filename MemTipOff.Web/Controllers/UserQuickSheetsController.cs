@@ -16,7 +16,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MemTipOff.Web.Controllers
 {
-    [Authorize(Policy = "ApiUser")]
+    //[Authorize(Policy = "ApiUser")]
     [Route("api/[controller]")]
     [ApiController]
     public class UserQuickSheetsController : Controller
@@ -35,8 +35,8 @@ namespace MemTipOff.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUserSheets()
         {
-            var userId = _caller.Claims.Single(c => c.Type == "id");
-            //var userId = "f9e42395-b1ed-4528-bcb0-b66904c68f41";
+            //var userId = _caller.Claims.Single(c => c.Type == "id");
+            var userId = "f9e42395-b1ed-4528-bcb0-b66904c68f41";
 
             DataTable dt = new DataTable();
             using (SqlConnection sqlconn = new SqlConnection(_dbcontext.Database.GetDbConnection().ConnectionString)) {

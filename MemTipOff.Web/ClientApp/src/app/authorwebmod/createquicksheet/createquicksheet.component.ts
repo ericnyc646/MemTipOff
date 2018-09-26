@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { QuickSheetsModel } from '../../models/quicksheetsmodel.model';
 import { QuicksheetsioService } from '../../datalayer/quicksheetsio.service';
@@ -29,8 +28,7 @@ export class CreatequicksheetComponent implements OnInit {
 
   constructor(private router: Router, 
     private userauthservice: UserauthserviceService, 
-    private quicksheetioservice: QuicksheetsioService, 
-    private http: HttpClient) {
+    private quicksheetioservice: QuicksheetsioService) {
 
    }
 

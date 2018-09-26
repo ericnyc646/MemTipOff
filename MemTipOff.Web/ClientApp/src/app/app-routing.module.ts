@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // General
-import { DatalayerComponent } from './datalayer/datalayer.component';
-import { QuicksheetsioService } from './datalayer/quicksheetsio.service';
+// import { DatalayerComponent } from './datalayer/datalayer.component';
+// import { QuicksheetsioService } from './datalayer/quicksheetsio.service';
+
 
 // Public Module
 import { PublicwebmodModule } from './publicwebmod/publicwebmod.module';
