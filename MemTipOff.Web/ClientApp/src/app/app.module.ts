@@ -52,6 +52,7 @@ import { UserwebmodModule } from './userwebmod/userwebmod.module';
 import { UserdashboardComponent } from './userwebmod/userdashboard/userdashboard.component';
 import { UsersettingsComponent } from './userwebmod/usersettings/usersettings.component';
 import { UsersidenavComponent } from './userwebmod/usersidenav/usersidenav.component';
+import { ViewquicksheetComponent } from './userwebmod/viewquicksheet/viewquicksheet.component';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { UsersidenavComponent } from './userwebmod/usersidenav/usersidenav.compo
     AboutsidenavComponent,
     BecomeauthorComponent,
     UsersettingsComponent,
-    UsersidenavComponent
+    UsersidenavComponent,
+    ViewquicksheetComponent
   ],
   imports: [
     BrowserModule,

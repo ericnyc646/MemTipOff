@@ -39,6 +39,7 @@ import { UserwebmodModule } from './userwebmod/userwebmod.module';
 import { UserdashboardComponent } from './userwebmod/userdashboard/userdashboard.component';
 import { UsersettingsComponent } from './userwebmod/usersettings/usersettings.component';
 import { UsersidenavComponent } from './userwebmod/usersidenav/usersidenav.component';
+import { ViewquicksheetComponent } from './userwebmod/viewquicksheet/viewquicksheet.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomepageComponent },
@@ -54,7 +55,7 @@ const appRoutes: Routes = [
     { path: 'authors', component: AuthordashboardComponent },
     { path: 'authors/create', component: CreatequicksheetComponent },
     { path: 'authors/dashboard', component: AuthordashboardComponent },
-    { path: 'authors/myquicksheets', component: AuthormyquicksheetsComponent },
+    { path: 'authors/viewsheet', component: ViewquicksheetComponent },
     { path: 'authors/settings', component: AuthorsettingsComponent },
     { path: 'user', component: UserdashboardComponent },
     { path: 'user', outlet: 'sidemenu', component: UsersidenavComponent},

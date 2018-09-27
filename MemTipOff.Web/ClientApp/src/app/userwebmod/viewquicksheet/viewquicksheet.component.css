@@ -1,0 +1,38 @@
+.ch-topic {
+    font-size: x-large;
+    padding-bottom: 15px;
+}
+
+.ch-topic > p {
+    background: linear-gradient(white, white, white, white, red);
+    /* border-right: 4px solid yellow; */
+}
+
+.ch-title {
+    padding-top: 10px;
+    font-size: small;
+    font-weight: bold;
+    /* border-right: 4px solid orange; */
+}
+
+.ch-note {
+    font-size: small;
+    /* border-right: 4px solid red; */
+}
+
+.ch-code {
+    font-size: small;
+    font-family: "Courier New", Courier, monospace;
+    background: #e6e6e6;
+    /* border-right: 4px solid green; */
+}
+
+.ch-footnote {
+    font-size: x-small;
+    /* border-right: 4px solid purple; */
+}
+
+.ch-linespace {
+    padding-top: 10px;
+    /* border-right: 4px solid blue; */
+}
