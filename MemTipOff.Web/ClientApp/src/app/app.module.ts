@@ -14,6 +14,7 @@ import { DatalayerComponent } from './datalayer/datalayer.component';
 import { QuicksheetsioService } from './datalayer/quicksheetsio.service';
 import { UserauthserviceService } from './datalayer/userauthservice.service';
 import { FaqService  } from './datalayer/faq.service';
+import { PageParametersService } from './datalayer/pageparameters.service';
 
 // Public Module
 import { PublicwebmodModule } from './publicwebmod/publicwebmod.module';
@@ -99,7 +100,8 @@ import { ViewquicksheetComponent } from './userwebmod/viewquicksheet/viewquicksh
   providers: [
     QuicksheetsioService,
     UserauthserviceService,
-    FaqService
+    FaqService,
+    PageParametersService
   ],
   bootstrap: [AppComponent]
 })

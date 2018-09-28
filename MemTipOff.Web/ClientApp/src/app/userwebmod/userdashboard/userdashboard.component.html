@@ -1,11 +1,19 @@
 <h2>My Cheatsheets</h2>
 <br/><br/>
-<div *ngFor="let onesheet of sheets" class="col-md-12">
+<!-- <div *ngFor="let onesheet of sheets" class="col-md-12">
   <a routerLink="/authors/viewsheet">{{onesheet.title}}</a><br/>
   {{onesheet.description}}<br/>
   {{onesheet.attribution}}<br/>
   <br/><hr/><br/><br/>
-</div>
+</div> -->
+
+<ul *ngFor="let onesheet of sheets">
+  <li (click)="sheetselected(onesheet.id)">
+      {{onesheet.title}}<br/>
+      {{onesheet.description}}<br/>
+      {{onesheet.attribution}}<br/>
+  </li>
+</ul>
 
 
 <!-- authors/viewsheet -->

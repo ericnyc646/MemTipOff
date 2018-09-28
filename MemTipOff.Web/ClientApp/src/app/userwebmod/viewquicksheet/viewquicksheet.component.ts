@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { QuickSheetsModel } from '../../models/quicksheetsmodel.model';
 import { QuicksheetsioService } from '../../datalayer/quicksheetsio.service';
+import { PageParametersService } from '../../datalayer/pageparameters.service';
 
 import { Router } from '@angular/router';
 import {Subscription} from 'rxjs';
@@ -21,14 +22,19 @@ export class ViewquicksheetComponent implements OnInit {
   status: boolean;
   subscription:Subscription;
 
+  sheettoview: string;
+
   constructor(private router: Router, 
     private userauthservice: UserauthserviceService, 
-    private quicksheetioservice: QuicksheetsioService) {
-
+    private quicksheetioservice: QuicksheetsioService,
+    private pageparamservice: PageParametersService) {
+      
    }
+
 
   ngOnInit() {
     this.subscription = this.userauthservice.authNavStatus$.subscribe(status => this.status = status);
+    this.pageparamservice.usersheetselectedtoview.subscribe((sheetid: string) => this.sheettoview = sheetid);
     this.getSheet();
   }
 
