@@ -34,12 +34,13 @@ export class ViewquicksheetComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.userauthservice.authNavStatus$.subscribe(status => this.status = status);
-    this.pageparamservice.usersheetselectedtoview.subscribe((sheetid: string) => this.sheettoview = sheetid);
-    this.getSheet();
+    this.pageparamservice.usersheetselectedtoview.subscribe((sheetid: string) => this.getSheet(sheetid));
   }
 
-  getSheet(): void {
-    this.quicksheetioservice.getAllSheets().subscribe(data => this.formatJSON(data));
+  getSheet(sheetid: string): void {
+    this.sheettoview = sheetid
+    //this.quicksheetioservice.getAllSheets().subscribe(data => this.formatJSON(data));
+    this.quicksheetioservice.getOneSheet(sheetid).subscribe(data => this.formatJSON(data));
   }
 
   formatJSON(data: any) {

@@ -23,4 +23,8 @@ export class QuicksheetsioService {
     return this.http.get<UserQuickSheetsModel[]>('/api/UserQuickSheets');
   }
 
+  getOneSheet(sheetid: string): Observable<QuickSheetsModel> {
+    return this.http.get<QuickSheetsModel>('/api/QuickSheets/' + sheetid);
+  }
+
 }
